@@ -20,6 +20,10 @@ def testfor01(request):
     st = [1,2,3,4,5,6,7,8,9]
     return render(request, 'var/testfor01.html',{'st':st})
 
+def testfor02(request):
+    st = [1,2,3,4,5,6,7,8,9]
+    return render(request, 'var/testfor02.html',{'st':st})
+
 def if01(request):
     return render(request,'var/if01.html',{'user':{'id':'hong-gd'}})
 

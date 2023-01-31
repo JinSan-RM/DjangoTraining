@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for i in st %}
+        <p>추천글 순서 {{i}}</p>
+        {% if i == 1%}
+            <h1>Best! 게시물</h1>
+        {% elif 3 >= i %}
+            <h2>Ranking! 게시물</h2>
+        {% elif 5 >= i %}
+            <h3>popular! 게시물</h3>
+        {% elif 7 >= i %}
+            {%for j in st%}
+                <h4>분발하세요!</h4>
+            {% endfor%}
+        {% else %}
+                <h1>End!</h1>
+        {% endif %}
+    {% endfor %}
+        
+
+</body>
+</html>
