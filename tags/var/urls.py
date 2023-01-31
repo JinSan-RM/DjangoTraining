@@ -12,6 +12,8 @@ urlpatterns = [
     #http://127.0.0.1/var/var02
     path('for/',views.testfor),
     #http://127.0.0.1/var/for
+    path('for01/',views.testfor01),
+    #http://127.0.0.1/var/for01
     path('if01/',views.if01),
     #http://127.0.0.1/var/if01
     path('if02/',views.if02),
