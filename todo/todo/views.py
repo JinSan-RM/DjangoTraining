@@ -15,7 +15,7 @@ def todo_post(request):
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
-            todo = form.svae(commit=False)
+            todo = form.save(commit=False)
             todo.save()
             return redirect('todo_list')
     else:
@@ -36,10 +36,10 @@ def todo_edit(request, pk):
 
 def done_list(request):
     dones = Todo.objects.filter(complete=True)
-    return render(request, 'todo/done_list.html', {'dones':dones})
+    return render(request, 'todo/todo_done_list.html', {'dones':dones})
 
 def todo_done(request, pk):
     todo = Todo.objects.get(id=pk)
     todo.complete = True
     todo.save()
-    return redirect('todo_list')
+    return redirect('/done/', {'todo':todo})
