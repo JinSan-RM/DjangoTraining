@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            text-align: center;
+            font-size: large;
+        }
+    </style>
+    <script>
+        function locationhref(){
+            location.href = '/insert_form/'
+            //http://127.0.0.1:8000/insert_form
+        }
+    </script>
+</head>
+<body>
+    <h1>Hello, Django</h1>
+
+    <table border="1">
+        <col width="50">
+        <col width="100">
+        <col width="500">
+        <col width="150">
+      
+        <tr>
+            <th>번호</th>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+        {% for myboard in myboards %}
+        <tr>
+            <td>{{ myboard.id }}</td>
+            <td>{{ myboard.myname }}</td>
+            <td style="text-align: center;"><a href="detail/{{ myboard.id }}">{{ myboard.mytitle }}</a></td>
+            <td>{{ myboard.mydate|date:'Y-m-d H:i'}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="4" text-align="right">
+                <input type="button" value="글작성" onclick="locationhref()">
+            </td>
+        </tr>
+
+    </table>
+    <!-- 처음으로 -->
+    <a href="?page=1">처음</a>
+        <!-- request의 get방식의 쿼리스트링으로 page값을 넘김 -->
+        {% if myboards.has_previous %}
+            <a href="?page={{myboards.previous_page_number}}">이전</a>
+        {% else %}
+            <a href="?page=1">이전</a>
+        {% endif %}
+        {% for i in myboards.paginator.page_range %}
+            {% if myboards.number >= i|add:-2 and i|add:+2 >= myboards.number %}
+                {% if myboards.number == i%}
+                    <a>{{i}}</a>
+                {% else %}  
+                    <a href="?page={{i}}">{{i}}</a>
+                {% endif %}
+            {% endif %}
+            
+        {% endfor %}
+    <!-- 마지막으로 -->
+        {% if myboards.has_next %}
+            <a href="?page={{myboards.next_page_number}}">다음</a>
+        {% else %}
+            <a href="?page={{myboards.paginator.num_pages}}">다음</a>
+        {% endif %}
+    <a href="?page={{myboards.paginator.num_pages}}">마지막</a>
+</body>
+</html>
+<!-- {% if i == myboards.number%}
+                
+{% else %}
+    <a href="">{{i}}</a>
+{% endif %} -->

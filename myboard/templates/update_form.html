@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DETAIL</h1>
+    <form action="/updateres/{{dto.id}}" method="POST">
+        <input type="hidden" name="id" value="{{dto.id}}">
+        {%csrf_token%} 
+        <table border='1'>
+            <tr>
+                <th>작성자</th>
+                <td><input type="text" name='myname' value="{{dto.myname}}" readonly></td> 
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name='mytitle' value="{{dto.mytitle}}"></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td><textarea name="mycontent" cols="60" rows="10">{{dto.mycontent}}</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" style='text-align: right;'>
+                    <input type="submit" value='수정제출'>
+                    <input type="button" value="취소">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</body>
+</html>
+<script>
+
+</script>
