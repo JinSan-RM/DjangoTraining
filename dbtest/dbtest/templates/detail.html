@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Detail</h1>
+    <table border="1">
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" value={{dto.myname}} readonly></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" value={{dto.mytitle}} readonly></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea cols="60" rows="10">{{dto.mycontent}}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right">
+                <input type="button" onclick="home_href()" value="목록">
+                <input type="button" onclick="update_href()" value="수정">
+                <input type="button" onclick="delete_href()" value="삭제">
+
+            </td>
+        </tr>
+    </table>
+    <!-- 목록, 수정, 삭제 -->
+</body>
+</html>
+<script>
+    function update_href(){
+        location.href = "{% url 'updateform' dto.id %}"
+        //location.href = "http://127.0.0.1/update_form/12"
+    }
+    function delete_href(){
+        location.href = "{% url 'deleteres' dto.id %}"
+    }
+    function home_href(){
+        location.href = "{% url 'index' %}"
+    }
+</script>

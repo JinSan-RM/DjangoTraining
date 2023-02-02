@@ -22,5 +22,17 @@
     <h1><a href="if01/">if01</a></h1>
     <br>
     <h1><a href="if02/">if02</a></h1>
+    <br>
+    <h1><a href="req/?q=python">GET</a></h1>
+    <br>
+    <form action="req/" method="POST">
+        {% csrf_token %}
+        <input type="text" name="id">
+        <input type="radio" name="id">pst
+        <input type="checkbox" name="id">pstest
+        <input type="submit" value="POST">
+    </form>
+    <br> 
+    <h1><a href="statics/">Static</a></h1>
 </body>
 </html>

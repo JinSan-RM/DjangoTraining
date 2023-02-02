@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello, Django</h1>
+
+    <table border="1">
+        <col width="50">
+        <col width="100">
+        <col width="500">
+        <col width="150">
+        <tr>
+            <th>번호</th>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+
+        {% if not list %}
+            <tr>
+                <th colspan="4">-----------작성된 글이 없습니다.--------------</th>
+            </tr>
+        {% else %}
+            {% for data in list %}
+                <tr>
+                    <td>{{data.id}}</td>
+                    <td>{{data.myname}}</td>
+                    <td><a href="detail/{{data.id}}">{{data.mytitle}}</a></td>
+                    <!--http://127.0.0.1/detail/1-->
+                    <td>{{data.mydate}}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr>
+            <td colspan="4" text-align="right"></td>
+            <input type="button" value="글작성" onclick="locationhref()">
+        </tr>
+    </table>
+
+</body>
+</html>
+<script>
+    function locationhref(){
+        location.href = "{% url 'insertform' %}"
+    }
+</script>

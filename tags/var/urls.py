@@ -20,4 +20,9 @@ urlpatterns = [
     #http://127.0.0.1/var/if01
     path('if02/',views.if02),
     #http://127.0.0.1/var/if02
+    path('req/',views.get_post),
+    #http://127.0.0.1/var/req
+    path('statics/',views.staticTest),
+    #http://127.0.0.1/var/staticTest
+
 ]

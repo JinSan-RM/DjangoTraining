@@ -75,3 +75,16 @@ template : html 파일
     <li>|-13| = {{ -13|abs }}</li>
 </ul>
 ```
+
+1. dbtest-admin startproject dbtest
+2. setting.py 에 INSTALLED_APPS ,'dbtest'추가
+   
+3. models.py에 class 작성
+4. dbtest 이동
+5. python manage.py makmigrations
+6. python manage.py migrate
+   
+7. dbtest > admin.py 작성
+8. admin 계정 생성 python manage.py createsuperuser (admin/1234)
+
+9. DBeaver연결 pip install mysqlclient

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icon@1.7.1/font/boot-strap-icon.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ToDo List App</h1>
+        <p>
+            <a href="{% url 'todo_post'%"><i class="bi-plus"></i>Add Todo</a>
+            <a href="" class="btn btn-primary" style="float:right">Sucess TODO List</a>
+        </p>
+        <ul class="list-group">
+            {% for todo in todos %}
+            <li class="list-group-item">
+                <a href="">{{ todo.title }}</a>
+                {% if todo.important %}
+                    <span class="badge badge-danger">!</span>
+                {% endif %}
+                <div style="float: right;">
+                    <a href="" class="btn btn-danger">완료</a>
+                    <a href="" class="btn btn-outline-primary">수정하기</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

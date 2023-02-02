@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Insert</h1>
+    <!-- DB에 넣을 때는 (insert) form, post, action -->
+    <form action="/insertres/" method="POST">
+    {% csrf_token %}
+    <table border="1">
+        <input type="hidden" name="id">
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" name="myname"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="mytitle"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea cols="60" name="mycontent" rows="10"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right">
+                <input type="button" value="취소">
+                <input type="submit" value="추가제출">
+            </td>
+        </tr>
+    </table>   
+    </form>
+</body>
+</html>
