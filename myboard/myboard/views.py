@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import myboard
+from .models import myboard, mymember
 from django.core.paginator import Paginator
 
 def index(request):
@@ -99,5 +99,37 @@ def updateres(request, id):
         return redirect('detail',id=id)
     else:
         return redirect('/update_form')
+
+def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html')
+    elif request.method == 'POST':
+        myname = request.POST['myname']
+        mypassword = request.POST['mypassword']
+        myemail = request.POST['myname']
+        mymembers = mymember.objects.create(myname=myname, mypassword=mypassword, myemail=myemail)
+        return redirect('index')
+
+def login(request):
+    if request.method == 'GET':
+        return render(request,'login.html')
+    elif request.method == 'POST':
+        myname = request.POST['myname']
+        mypassword = request.POST['mypassword']
+        mymembers = mymember.objects.get(myname=myname)
+
+        if mypassword == mymembers.mypassword :
+            
+            request.session['myname'] = mymembers.myname
+            return redirect('index') # 성공했으니 로그인이 된 페이지
+        else:
+            return redirect('login')
+
+    
+
+def logout(request):
+    del request.session['myname']
+    return redirect('index')
+
 
 

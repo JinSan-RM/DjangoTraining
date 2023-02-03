@@ -26,6 +26,9 @@ urlpatterns = [
     path('delete/<int:id>',views.delete_proc,name='delete'),
     path('updateform/<int:id>',views.update_proc, name='update'),
     path('updateres/<int:id>',views.updateres,name='updateres'),
+    path('register/',views.register, name='register'),
+    path('login/',views.login, name='login'),
+    path('logout/',views.logout, name='logout'),
 
     
 ]

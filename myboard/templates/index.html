@@ -16,11 +16,24 @@
             location.href = '/insert_form/'
             //http://127.0.0.1:8000/insert_form
         }
+        function createnewuser(){
+            location.href = '/register/'
+        }
     </script>
 </head>
 <body>
-    <h1>Hello, Django</h1>
-
+    <h1>Hello, Django,  {{request.session.myname}}님</h1>
+    {% if request.session.myname %}
+    <h3><a href=""></a></h3>
+    {% else %}
+        <h3><a href="{% url 'register' %}">회원가입</a></h3>
+    {% endif %}
+    {% if request.session.myname %}
+        <h3><a href="{% url 'logout' %}">로그아웃</a></h3>
+    {% else %}
+        <h3><a href="{% url 'login' %}">로그인</a></h3>
+    {% endif %}
+    
     <table border="1">
         <col width="50">
         <col width="100">
@@ -73,6 +86,8 @@
             <a href="?page={{myboards.paginator.num_pages}}">다음</a>
         {% endif %}
     <a href="?page={{myboards.paginator.num_pages}}">마지막</a>
+
+
 </body>
 </html>
 <!-- {% if i == myboards.number%}
