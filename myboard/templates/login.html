@@ -10,6 +10,7 @@
     <h1>Login</h1>
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
+
         이름 : <input type="text" name="myname">
         <br>
         비밀번호 : <input type="text" name="mypassword">

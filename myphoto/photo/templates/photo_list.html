@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사진목록페이지</h1>
+    <h3><a href="{% url 'photo_post' %}">new photo</a></h3>
+
+    <section>
+        {% for photo in photos %}
+        <div>
+            <h2><a href="{% url 'photo_detail' pk=photo.id %}"> {{photo.title}}</a></h2>
+            <img src="{{photo.image}}" alt="{{photo.title}}" width="300">
+            <p>{{photo.author}}, {{photo.price}}</p>
+        </div>
+        {% endfor %}
+    </section>
+</body>
+</html>
