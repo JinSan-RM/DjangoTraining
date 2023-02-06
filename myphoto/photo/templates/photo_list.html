@@ -13,8 +13,10 @@
     <section>
         {% for photo in photos %}
         <div>
-            <h2><a href="{% url 'photo_detail' pk=photo.id %}"> {{photo.title}}</a></h2>
-            <img src="{{photo.image}}" alt="{{photo.title}}" width="300">
+            <h2><a href="{% url 'photo_detail' pk=photo.id %}"> {{photo.title}}</a> <a href="{% url 'photo_delete' pk=photo.id %}">삭제!</a></h2>
+            
+            <a href="{% url 'download' %}"><img src="/media/{{photo.imagefile}}" alt="{{photo.title}}" width="300"></a>
+            
             <p>{{photo.author}}, {{photo.price}}</p>
         </div>
         {% endfor %}

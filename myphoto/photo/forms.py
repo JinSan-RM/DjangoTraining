@@ -1,8 +1,8 @@
 from django import forms
-from .models import photo
+from .models import Photo
 
 class PhotoForm(forms.ModelForm):
     class Meta:
-        model = photo
-        fields = ('title','author','image',
+        model = Photo
+        fields = ('title','author','imagefile',
         'description','price')
