@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block html_header %}
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<!-- Custom styles for this template -->
+<link href="/static/css/signin.css" rel="stylesheet">
+{% endblock %}
+
+{% block html_body %}
+
+<main class="form-signin">
+    <form action="/users/loginProcess/" method='POST'>
+    {% comment %} 파일 업로드를 위한 multipart/form-data {% endcomment %}
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">로그인 하세요!</h1>
+
+    {{ login_form }}
+    <br>
+    <button type='submit' class='w-100 btn blt-lg btn-primary'>로그인</button>
+    </form>
+
+</main>
+
+{% endblock %}

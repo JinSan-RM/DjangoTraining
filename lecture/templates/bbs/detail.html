@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block html_body %}
+    <script src='/static/js/c_comment.js'></script>
+
+    <div class='container'>
+        <h1>글 상세 보기</h1>
+        
+        글번호 : <span id="board_id">{{ board_detail_form.initial.id }}</span>
+        {% bootstrap_form board_detail_form %}
+
+        <br>
+        <button class='btn btn-secondary' 
+            onclick="location.href='{% url 'bbs:b_list'%}'" >리스트로 돌아아기</button>
+        <button class='btn btn-info' 
+            onclick="location.href='{% url 'bbs:b_update' board_detail_form.initial.id %}'">수정</button>
+        <button class='btn btn-danger' 
+            onclick="location.href='{% url 'bbs:b_delete' board_detail_form.initial.id %}'">삭제</button>
+        <button class='btn btn-warning'
+            onclick="location.href='{% url 'bbs:b_like' board_detail_form.initial.id %}'">좋아요</button>
+    </div>
+    <br>
+    <!-- 댓글 등록 -->
+    <div class='container'>
+        <div>
+            <label for="c_name">이름</label>
+            <input type="text" class='form-control w-25' id='c_name'>
+            <label for="c_content">내용</label>
+            <input type="text" class='form-control w-50' id='c_content'>
+            <br>
+            <button class='btn btn-primary' id='comment_create_btn'>댓글 등록</button>
+            <br><br>
+        </div>
+        <!-- 댓글(comment) 리스트 -->
+        <table class='table table-hover'>
+                <thead>
+                        <tr>
+                                <th>글작성자</th>
+                                <td>글 내용</th>
+                                <th>삭제</th>
+                        </tr>
+                </thead>
+
+                <tbody>
+                {% for comment in comments%}
+                        <tr>
+                                <td>{{ comment.c_author }}</td>
+                                <td>{{ comment.c_content }}</td>
+                                <td>삭제버튼</td>
+                        </tr>
+                {% endfor %}        
+                </tbody>
+        </table>
+    </div>
+{% endblock %}

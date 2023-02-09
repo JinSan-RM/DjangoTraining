@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block html_body %}
+   
+    <div class='container'>
+        <h1>글 수정하기</h1>
+        <form action="{% url 'bbs:b_update_process' board_update_form.initial.id %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form board_update_form %}
+
+            <br>
+
+            <div>
+                <button class="btn btn-secondary" onclick="location.href='{% url 'bbs:b_list' %}'">리스트로 돌아가기</button>
+                <button class="btn btn-info" type="submit" >수정적용</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -26,10 +26,33 @@
                 <div style="float: right;">
                     <a href="done/{{todo.pk}}/" class="btn btn-danger">완료</a>
                     <a href="{{todo.pk}}/edit/" class="btn btn-outline-primary">수정하기</a>
+                    <a href="{{todo.pk}}/delete/" class="btn btn-danger">삭제</a>
                 </div>
             </li>
             {% endfor %}
         </ul>
+        <a href="?page=1">처음</a>
+            {% if todos.has_previous %}
+                <a href="?page={{todos.previous_page_number}}">이전</a>
+            {% else %}
+                <a href="?page=1">이전</a>
+            {% endif %}
+            {% for i in todos.paginator.page_range %}
+                {% if todos.number >= i|add:-4 and i|add:+4 >= todos.number %}
+                    {% if todos.number == i %}
+                        <span style="color:red">{{i}}</span>
+                    {% else %}
+                        <a href="?page={{i}}">{{i}}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if todos.has_next %}
+                <a href="?page={{todos.next_page_number}}">다음</a>
+            {% else %}
+                <a href="?page={{todos.paginator.num_pages}}">다음</a>
+            {% endif %}
+        <a href="?page={{todos.paginator.num_pages}}">마지막</a>
     </div>
+    
 </body>
 </html>

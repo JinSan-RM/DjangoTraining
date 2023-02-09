@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block html_body %}
+    <div class="container">
+        <h1>Bulletin Board System(BBS)</h1>
+        <button class="btn btn-primary" onclick="location.href='{% url 'bbs:b_create' %}'">새 글작성</button>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>글제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>댓글수</th>
+                    <th>좋아요 수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{post.id}}</td>
+                        <td><a href="{% url 'bbs:b_detail' post.id %}">{{post.b_title}}</a></td>
+                        <td>{{post.b_author}}</td>
+                        <td>{{post.b_date}}</td>
+                        <td>{{post.b_comment_count}}</td>
+                        <td>{{post.b_like_count}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock html_body %}

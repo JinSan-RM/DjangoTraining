@@ -72,7 +72,7 @@
         {% for i in myboards.paginator.page_range %}
             {% if myboards.number >= i|add:-2 and i|add:+2 >= myboards.number %}
                 {% if myboards.number == i%}
-                    <a>{{i}}</a>
+                    <span>{{i}}</span>
                 {% else %}  
                     <a href="?page={{i}}">{{i}}</a>
                 {% endif %}

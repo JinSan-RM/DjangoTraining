@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404           # get_objects_or_404 불러오기
 from .models import Book
 from .serializers import BookSerializer
+from rest_framework import generics
+from rest_framework import mixins
 
 @api_view(['GET'])
 def HelloAPI(request):
@@ -50,3 +52,22 @@ class BookAPI(APIView):
         book = get_object_or_404(Book, bid=bid)
         serializer = BookSerializer(book)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class BooksAPImixins(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    def get(self, request, *args, **kwargs):                # GET 메소드 처리 함수(전체목록)
+        return self.list(request, *args, **kwargs)          # mixins.ListModelMixin과 연결
+    
+    def post(self, request, *args, **kwargs):               # POST 메소드 처리 함수 (1권 등록)
+        return self.create(request, *args, **kwargs)        # mixins.CreateModelMixin과 연결
+
+class BookAPIMixins(mixins.RetrieveModelMixin, generics.GenericAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'bid'
+    #우리는 Django 기본 모델 pk가 아닌 bid를 pk로 사용하고 있으니 lookup_field로 설정합니다.
+
+    def get(self, request, *args, **kwargs):                # GET 메소드 처리 함수 (1권 등록)
+        return self.retrieve(request, *args, **kwargs)      # mixins.RetrieveModelMixin과 연결

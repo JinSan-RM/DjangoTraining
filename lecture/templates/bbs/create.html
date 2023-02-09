@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block html_body %}
+   
+    <div class='container'>
+        <h1>새글 작성</h1>
+
+        <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form board_form %}
+
+            <br>
+
+            <button class="btn btn-primary" 
+                    type="submit">등록</button>
+            <button class="btn btn-secondary"
+                    type="button"
+                    id="board_list_btn" onclick="location.href='{% url 'bbs:b_list' %}'">리스트로 돌아가기</button>
+        <form>    
+    </div>
+
+{% endblock %}

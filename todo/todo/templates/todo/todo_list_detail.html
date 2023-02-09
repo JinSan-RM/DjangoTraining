@@ -18,6 +18,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ todo.title }}</h5>
                             <p class="card-text">{{ todo.description }}</p>
+                            <p>
+                                <img src="/media/{{todo.imagefile}}" alt="" width="300">
+                            </p>
                             <a href="{% url 'todo_list' %}" class="btn btn-primary">목록으로</a>
                         </div>
                     </div>
